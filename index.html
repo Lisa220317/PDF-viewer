@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF 瀏覽器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-text">
+            <h1>📄 PDF 瀏覽器</h1>
+            <div class="subtitle-row">
+                <select id="sizeSelect" class="size-select" title="縮圖大小">
+                    <option value="large">大縮圖</option>
+                    <option value="medium" selected>中縮圖</option>
+                    <option value="small">小縮圖</option>
+                    <option value="list">僅文字排列</option>
+                </select>
+                <p class="subtitle">將 PDF 檔案放入 <code>pdfs/</code> 資料夾即可瀏覽</p>
+            </div>
+        </div>
+        <input
+            id="search"
+            type="search"
+            class="search"
+            placeholder="🔍 搜尋檔名…"
+            autocomplete="off"
+        >
+    </header>
+
+    <main>
+        <div id="status" class="status">載入中…</div>
+        <div id="empty" class="status" hidden>找不到符合的檔案</div>
+        <div id="grid" class="grid"></div>
+    </main>
+
+    <div class="modal" id="modal" hidden>
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <select id="addPaneSelect" class="add-pane-select">
+                    <option value="">+ 開另一個 PDF</option>
+                </select>
+                <button class="btn btn-sm" id="splitToggle" title="切換分割方向">↕ 上下分割</button>
+                <button class="btn btn-close" id="modalClose">關閉</button>
+            </div>
+            <div class="panes" id="panes"></div>
+            <div class="modal-resize-handle" id="modalResizeHandle" title="拖拉調整視窗大小"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

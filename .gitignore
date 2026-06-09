@@ -1,0 +1,10 @@
+# PDF files are user content, not part of the source — clone-and-drop-in workflow
+pdfs/*.pdf
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp

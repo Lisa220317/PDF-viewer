@@ -1,0 +1,441 @@
+:root {
+    --bg: #f5f6f8;
+    --card: #ffffff;
+    --text: #1f2328;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.08), 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC",
+        "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.header-text {
+    flex: 1 1 auto;
+    min-width: 200px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.search {
+    flex: 0 1 320px;
+    min-width: 180px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.search:focus {
+    background: var(--card);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.card.hidden {
+    display: none;
+}
+
+.subtitle {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.subtitle-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+.subtitle-row .subtitle {
+    margin: 0;
+}
+
+.size-select {
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.size-select:hover {
+    background: var(--bg);
+}
+
+.subtitle code {
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.status {
+    color: var(--muted);
+    text-align: center;
+    padding: 40px 0;
+    font-size: 15px;
+}
+
+.status.error {
+    color: #b91c1c;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.grid.size-large {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.grid.size-small {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.grid.list-mode {
+    grid-template-columns: 1fr;
+    gap: 4px;
+}
+
+.grid.list-mode .card {
+    flex-direction: row;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.grid.list-mode .card:hover {
+    transform: none;
+}
+
+.grid.list-mode .thumb {
+    display: none;
+}
+
+.grid.list-mode .card-body {
+    padding: 10px 14px;
+    flex: 1;
+    min-width: 0;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    border-color: #d1d5db;
+}
+
+.thumb {
+    aspect-ratio: 3 / 4;
+    background: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+
+.thumb canvas {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+.thumb .placeholder {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.card-body {
+    padding: 12px 14px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal[hidden] {
+    display: none;
+}
+
+.modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--card);
+    width: 99vw;
+    height: 99vh;
+    min-width: 320px;
+    min-height: 240px;
+    max-width: 100vw;
+    max-height: 100vh;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+    cursor: nwse-resize;
+    z-index: 20;
+    background:
+        linear-gradient(135deg,
+            transparent 0,
+            transparent 45%,
+            var(--muted) 45%,
+            var(--muted) 55%,
+            transparent 55%,
+            transparent 70%,
+            var(--muted) 70%,
+            var(--muted) 80%,
+            transparent 80%);
+}
+
+.modal-resize-ghost {
+    position: fixed;
+    border: 2px dashed var(--accent);
+    background: rgba(37, 99, 235, 0.06);
+    pointer-events: none;
+    z-index: 200;
+    border-radius: 10px;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.add-pane-select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    max-width: 240px;
+}
+
+.add-pane-select:hover {
+    background: var(--bg);
+}
+
+.btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    background: var(--bg);
+    border-color: #d1d5db;
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+a.btn {
+    display: inline-flex;
+    align-items: center;
+}
+
+.panes {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+    background: #525659;
+    position: relative;
+}
+
+.panes.vertical {
+    flex-direction: column;
+}
+
+.pane {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+    min-width: 120px;
+    min-height: 120px;
+    background: var(--card);
+    position: relative;
+}
+
+.splitter-ghost {
+    position: absolute;
+    background: var(--accent);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.splitter-ghost:not(.vertical) {
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    margin-left: -3px;
+}
+
+.splitter-ghost.vertical {
+    left: 0;
+    right: 0;
+    height: 6px;
+    margin-top: -3px;
+}
+
+.pane-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    flex-shrink: 0;
+}
+
+.pane-title {
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pane iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
+    background: #525659;
+}
+
+.splitter {
+    background: var(--border);
+    flex-shrink: 0;
+    transition: background 0.15s ease;
+}
+
+.panes:not(.vertical) > .splitter {
+    width: 6px;
+    cursor: col-resize;
+}
+
+.panes.vertical > .splitter {
+    height: 6px;
+    cursor: row-resize;
+}
+
+.splitter:hover,
+.splitter.dragging {
+    background: var(--accent);
+}
+
+body.resizing-h {
+    cursor: col-resize;
+    user-select: none;
+}
+
+body.resizing-v {
+    cursor: row-resize;
+    user-select: none;
+}
