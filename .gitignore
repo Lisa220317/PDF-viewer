@@ -8,3 +8,10 @@ pdfs/*.pdf
 .vscode/
 .idea/
 *.swp
+
+# PyInstaller build artifacts
+dist/
+build/
+*.spec
+__pycache__/
+.venv/
